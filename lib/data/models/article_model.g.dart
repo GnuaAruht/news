@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'article.dart';
+part of 'article_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
-      source: Source.fromJson(json['source'] as Map<String, dynamic>),
+ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
+      source: SourceModel.fromJson(json['source'] as Map<String, dynamic>),
       author: json['author'] as String?,
       title: json['title'] as String,
       description: json['description'] as String?,
@@ -17,7 +17,8 @@ Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
       content: json['content'] as String?,
     );
 
-Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
+Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
+    <String, dynamic>{
       'source': instance.source,
       'author': instance.author,
       'title': instance.title,

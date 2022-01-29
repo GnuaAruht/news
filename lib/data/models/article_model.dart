@@ -1,8 +1,13 @@
-import 'package:equatable/equatable.dart';
-import 'package:news/domain/entities/source.dart';
+import 'package:flutter/services.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class Article extends Equatable {
-  final Source source;
+import './source_model.dart';
+
+part 'article_model.g.dart';
+
+@JsonSerializable()
+class ArticleModel {
+  final SourceModel source;
   final String? author;
   final String title;
   final String? description;
@@ -11,7 +16,7 @@ class Article extends Equatable {
   final String publishedAt;
   final String? content;
 
-  const Article(
+  ArticleModel(
       {required this.source,
       this.author,
       required this.title,
@@ -21,15 +26,8 @@ class Article extends Equatable {
       required this.publishedAt,
       required this.content});
 
-  @override
-  List<Object?> get props => [
-        source,
-        author,
-        title,
-        description,
-        url,
-        urlToImage,
-        publishedAt,
-        content
-      ];
+  factory ArticleModel.fromJson(Map<String, dynamic> json) =>
+      _$ArticleModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArticleModelToJson(this);
 }
