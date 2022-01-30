@@ -22,7 +22,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       if (dataState is DataSuccess) {
         emit(MainState.fetched(dataState.data!));
       } else {
-        emit(const MainState.error('error'));
+        emit(MainState.error(dataState.error!.message));
       }
     });
   }

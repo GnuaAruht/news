@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/injector.dart';
 import 'package:news/presentation/blocs/main/main_bloc.dart';
 
-import 'presentation/pages/home_page.dart';
+import 'presentation/pages/main_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class NewsApp extends StatelessWidget {
       home: BlocProvider<MainBloc>(
         create: (context) =>
             injector.get<MainBloc>()..add(const MainEvent.fetchNewsList()),
-        child: const HomePage(),
+        child: const MainPage(),
       ),
     );
   }
