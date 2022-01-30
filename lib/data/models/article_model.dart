@@ -1,7 +1,7 @@
-import 'package:flutter/services.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import './source_model.dart';
+import '../../domain/entities/article.dart';
+import 'source_model.dart';
 
 part 'article_model.g.dart';
 
@@ -30,4 +30,17 @@ class ArticleModel {
       _$ArticleModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArticleModelToJson(this);
+}
+
+extension ArticleModelX on ArticleModel {
+  Article toEntity() {
+    return Article(
+        source: source.toEntity(),
+        title: title,
+        description: description,
+        url: url,
+        urlToImage: urlToImage,
+        publishedAt: publishedAt,
+        content: content);
+  }
 }

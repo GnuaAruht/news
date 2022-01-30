@@ -44,3 +44,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# News Api Key
+/lib/core/constants/api_key.dart
+/lib/temp.dart

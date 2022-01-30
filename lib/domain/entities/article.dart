@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:news/domain/entities/source.dart';
+
+import 'source.dart';
 
 class Article extends Equatable {
   final Source source;

@@ -1,7 +1,7 @@
-import 'package:news/data/data_sources/remote/news_api.dart';
 import 'package:retrofit/dio.dart';
 
 import '../../models/article_result_model.dart';
+import 'news_api.dart';
 import 'news_remote_data_source.dart';
 
 class NewsRemoteDataSourceImpl extends NewsRemoteDataSource {
@@ -11,7 +11,7 @@ class NewsRemoteDataSourceImpl extends NewsRemoteDataSource {
 
   @override
   Future<HttpResponse<ArticleResultModel>> getTopHeadlineArticles(
-      {required int page, required int pageSize}) {
-    return newsApi.getTopHeadlineArticles(pageSize: pageSize, page: page);
+      {required int page}) {
+    return newsApi.getTopHeadlineArticles(page: page);
   }
 }
