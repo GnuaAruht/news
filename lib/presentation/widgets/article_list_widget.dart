@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/constants/ui_constants.dart';
-import 'package:news/domain/entities/article.dart';
+
+import '../../core/constants/ui_constants.dart';
+import '../../domain/entities/article.dart';
+import '../pages/article_detail_page.dart';
 
 class ArticleListWidget extends StatelessWidget {
   final List<Article> articles;
@@ -9,6 +11,8 @@ class ArticleListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         itemCount: articles.length,
         padding: const EdgeInsets.all(8.0),
         separatorBuilder: (context, index) {
@@ -19,7 +23,6 @@ class ArticleListWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           return _ArticleItemWidget(
             article: articles[index],
-            onTap: () {},
           );
         });
   }
@@ -27,15 +30,17 @@ class ArticleListWidget extends StatelessWidget {
 
 class _ArticleItemWidget extends StatelessWidget {
   final Article article;
-  final VoidCallback onTap;
-  const _ArticleItemWidget(
-      {Key? key, required this.article, required this.onTap})
-      : super(key: key);
+  const _ArticleItemWidget({Key? key, required this.article}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => ArticleDetailPage(
+                  article: article,
+                )));
+      },
       child: Container(
         height: DEFAULT_ITEM_HEIGHT,
         padding: const EdgeInsets.all(DEFAULT_PADDING),

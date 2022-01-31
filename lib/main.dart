@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/core/config/theme.dart';
 import 'package:news/injector.dart';
 import 'package:news/presentation/blocs/main/main_bloc.dart';
 
@@ -19,9 +20,8 @@ class NewsApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: buildlightTheme(),
+      darkTheme: ThemeData.dark(),
       home: BlocProvider<MainBloc>(
         create: (context) =>
             injector.get<MainBloc>()..add(const MainEvent.fetchNewsList()),

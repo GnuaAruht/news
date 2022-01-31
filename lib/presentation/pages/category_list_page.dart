@@ -56,8 +56,10 @@ class _CategoryItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => const ArticleListPage()));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => ArticleListPage(
+                  category: category,
+                )));
       },
       child: Container(
         padding: const EdgeInsets.all(DEFAULT_PADDING * 2.5),
