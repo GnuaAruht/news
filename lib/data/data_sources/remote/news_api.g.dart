@@ -15,14 +15,16 @@ class _NewsApi implements NewsApi {
 
   @override
   Future<HttpResponse<ArticleResultModel>> getTopHeadlineArticles(
-      {country = DEFAULT_COUNTRY,
-      required page,
-      pageSize = DEFAULT_PAGE_SIZE}) async {
+      {required page,
+      required pageSize,
+      required country,
+      required category}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'country': country,
       r'page': page,
-      r'pageSize': pageSize
+      r'pageSize': pageSize,
+      r'country': country,
+      r'category': category
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};

@@ -96,18 +96,12 @@ class __$FetchNewsListCopyWithImpl<$Res> extends _$MainEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchNewsList with DiagnosticableTreeMixin implements _FetchNewsList {
+class _$_FetchNewsList implements _FetchNewsList {
   const _$_FetchNewsList();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'MainEvent.fetchNewsList()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'MainEvent.fetchNewsList'));
   }
 
   @override
@@ -297,18 +291,12 @@ class __$$MainInitialCopyWithImpl<$Res> extends _$MainStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_$MainInitial with DiagnosticableTreeMixin implements _$MainInitial {
+class _$_$MainInitial implements _$MainInitial {
   const _$_$MainInitial();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'MainState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'MainState.initial'));
   }
 
   @override
@@ -419,18 +407,12 @@ class __$$MainLoadingCopyWithImpl<$Res> extends _$MainStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_$MainLoading with DiagnosticableTreeMixin implements _$MainLoading {
+class _$_$MainLoading implements _$MainLoading {
   const _$_$MainLoading();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'MainState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'MainState.loading'));
   }
 
   @override
@@ -554,23 +536,15 @@ class __$$MainFetchedCopyWithImpl<$Res> extends _$MainStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_$MainFetched with DiagnosticableTreeMixin implements _$MainFetched {
+class _$_$MainFetched implements _$MainFetched {
   const _$_$MainFetched(this.articles);
 
   @override
   final List<Article> articles;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'MainState.fetched(articles: $articles)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'MainState.fetched'))
-      ..add(DiagnosticsProperty('articles', articles));
   }
 
   @override
@@ -707,23 +681,15 @@ class __$$MainErrorCopyWithImpl<$Res> extends _$MainStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_$MainError with DiagnosticableTreeMixin implements _$MainError {
+class _$_$MainError implements _$MainError {
   const _$_$MainError(this.errorMessage);
 
   @override
   final String errorMessage;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'MainState.error(errorMessage: $errorMessage)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'MainState.error'))
-      ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
   @override

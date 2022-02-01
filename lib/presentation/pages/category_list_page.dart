@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/constants/ui_constants.dart';
-import 'package:news/domain/entities/category.dart';
-import 'package:news/presentation/pages/article_list_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../core/constants/ui_constants.dart';
+import '../../domain/entities/category.dart';
+import '../../injector.dart';
+import '../blocs/list/list_bloc.dart';
+import 'article_list_page.dart';
 
 class CategoryListPage extends StatelessWidget {
   const CategoryListPage({
@@ -57,8 +61,12 @@ class _CategoryItemWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => ArticleListPage(
-                  category: category,
+            builder: (_) => BlocProvider(
+                  create: (context) => injector.get<ListBloc>()
+                    ..add(ListEvent.fetchList(category)),
+                  child: ArticleListPage(
+                    category: category,
+                  ),
                 )));
       },
       child: Container(

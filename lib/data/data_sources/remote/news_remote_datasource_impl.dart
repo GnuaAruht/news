@@ -11,7 +11,14 @@ class NewsRemoteDataSourceImpl extends NewsRemoteDataSource {
 
   @override
   Future<HttpResponse<ArticleResultModel>> getTopHeadlineArticles(
-      {required int page}) {
-    return newsApi.getTopHeadlineArticles(page: page);
+      {required int page,
+      required String categoryValue,
+      required int pageSize,
+      required String country}) {
+    return newsApi.getTopHeadlineArticles(
+        page: page,
+        pageSize: pageSize,
+        country: country,
+        category: categoryValue);
   }
 }

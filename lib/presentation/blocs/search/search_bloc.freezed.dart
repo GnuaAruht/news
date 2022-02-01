@@ -148,7 +148,7 @@ class __$StartedCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started implements _Started {
+class _$_Started with DiagnosticableTreeMixin implements _Started {
   const _$_Started(this.category, this.text);
 
   @override
@@ -157,8 +157,17 @@ class _$_Started implements _Started {
   final String? text;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SearchEvent.started(category: $category, text: $text)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SearchEvent.started'))
+      ..add(DiagnosticsProperty('category', category))
+      ..add(DiagnosticsProperty('text', text));
   }
 
   @override
@@ -299,15 +308,23 @@ class __$ChangeTextCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangeText implements _ChangeText {
+class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
   const _$_ChangeText(this.text);
 
   @override
   final String text;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SearchEvent.changeText(text: $text)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SearchEvent.changeText'))
+      ..add(DiagnosticsProperty('text', text));
   }
 
   @override
@@ -430,12 +447,18 @@ class __$FetchNextCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchNext implements _FetchNext {
+class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
   const _$_FetchNext();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SearchEvent.fetchNext()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SearchEvent.fetchNext'));
   }
 
   @override
@@ -545,12 +568,18 @@ class __$ClearTextCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ClearText implements _ClearText {
+class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
   const _$_ClearText();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SearchEvent.clearText()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SearchEvent.clearText'));
   }
 
   @override
@@ -723,12 +752,18 @@ class __$InitialCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   const _$_Initial();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SearchState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SearchState.initial'));
   }
 
   @override

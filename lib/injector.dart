@@ -1,16 +1,18 @@
-import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
-import 'package:news/core/constants/api_key.dart';
-import 'package:news/core/constants/constants.dart';
-import 'package:news/data/data_sources/local/news_local_data_source.dart';
-import 'package:news/data/data_sources/local/news_local_data_source_impl.dart';
-import 'package:news/data/data_sources/remote/news_api.dart';
-import 'package:news/data/data_sources/remote/news_remote_data_source.dart';
-import 'package:news/data/data_sources/remote/news_remote_datasource_impl.dart';
-import 'package:news/data/repositories/news_repository_impl.dart';
-import 'package:news/domain/repositories/news_repository.dart';
-import 'package:news/domain/usecases/get_news_list_usecase.dart';
-import 'package:news/presentation/blocs/main/main_bloc.dart';
+import 'package:get_it/get_it.dart';
+
+import 'core/constants/api_key.dart';
+import 'core/constants/constants.dart';
+import 'data/data_sources/local/news_local_data_source.dart';
+import 'data/data_sources/local/news_local_data_source_impl.dart';
+import 'data/data_sources/remote/news_api.dart';
+import 'data/data_sources/remote/news_remote_data_source.dart';
+import 'data/data_sources/remote/news_remote_datasource_impl.dart';
+import 'data/repositories/news_repository_impl.dart';
+import 'domain/repositories/news_repository.dart';
+import 'domain/usecases/get_headline_articles_usecase.dart';
+import 'presentation/blocs/list/list_bloc.dart';
+import 'presentation/blocs/main/main_bloc.dart';
 
 GetIt injector = GetIt.instance;
 
@@ -52,4 +54,5 @@ void _injectUsecases() {
 
 void _injectBlocs() {
   injector.registerFactory(() => MainBloc(injector()));
+  injector.registerFactory(() => ListBloc(injector()));
 }
