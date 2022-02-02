@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/core/constants/ui_constants.dart';
-import 'package:news/domain/entities/article.dart';
-import 'package:news/presentation/widgets/article_item_widget.dart';
 
+import '../../core/constants/ui_constants.dart';
+import '../../domain/entities/article.dart';
 import '../../domain/entities/category.dart';
 import '../blocs/list/list_bloc.dart';
+import '../widgets/article_item_widget.dart';
 import 'search_page.dart';
 
 class ArticleListPage extends StatelessWidget {
@@ -124,25 +124,54 @@ class _ArticleListWidgetState extends State<_ArticleListWidget> {
         itemBuilder: (context, index) {
           return index < widget.articles.length
               ? ArticleItemWidget(article: widget.articles[index])
-              : const _LoadingItemWidget();
+              : _LoadingItemWidget(
+                  category: widget.category,
+                );
         });
   }
 }
 
 class _LoadingItemWidget extends StatelessWidget {
-  const _LoadingItemWidget({Key? key}) : super(key: key);
+  final Category category;
+  const _LoadingItemWidget({Key? key, required this.category})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: 40,
-          width: 40,
-          child: CircularProgressIndicator(),
-        ),
-      ),
+    return BlocBuilder<ListBloc, ListState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        switch (state.status) {
+          case PagingStatus.pending:
+            return Container(
+              padding: const EdgeInsets.all(DEFAULT_PADDING),
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  const Text('Loading failed'),
+                  TextButton(
+                      onPressed: () {
+                        context
+                            .read<ListBloc>()
+                            .add(ListEvent.fetchList(category));
+                      },
+                      child: const Text('Retry'))
+                ],
+              ),
+            );
+          default:
+            return const Center(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 40,
+                  width: 40,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+        }
+      },
     );
   }
 }

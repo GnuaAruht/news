@@ -9,4 +9,7 @@ abstract class NewsRepository {
       required Category category,
       required int pageSize,
       required String country});
+
+  Future<DataState<List<Article>>> searchArticles(
+      {required int page, required int pageSize, required String query});
 }

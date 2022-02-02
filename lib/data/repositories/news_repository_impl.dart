@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:news/domain/entities/category.dart';
+import 'package:news/domain/usecases/search_articles_usecase.dart';
 
 import '../../core/constants/constants.dart';
 import '../../core/resources/data_state.dart';
@@ -31,6 +33,31 @@ class NewsRepositoryImpl extends NewsRepository {
           pageSize: pageSize,
           country: country);
 
+      if (_response.response.statusCode == HttpStatus.ok) {
+        final _models = _response.data.articles;
+        return DataSuccess(
+            data: _models.map((model) => model.toEntity()).toList());
+      } else {
+        return DataFailed(
+          error: DioError(
+            error: _response.response.statusMessage,
+            response: _response.response,
+            type: DioErrorType.response,
+            requestOptions: _response.response.requestOptions,
+          ),
+        );
+      }
+    } on DioError catch (e) {
+      return DataFailed(error: e);
+    }
+  }
+
+  @override
+  Future<DataState<List<Article>>> searchArticles(
+      {required int page, required int pageSize, required String query}) async {
+    try {
+      final _response = await remoteDataSource.searchArticles(
+          page: page, pageSize: pageSize, query: query);
       if (_response.response.statusCode == HttpStatus.ok) {
         final _models = _response.data.articles;
         return DataSuccess(

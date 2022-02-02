@@ -21,4 +21,11 @@ class NewsRemoteDataSourceImpl extends NewsRemoteDataSource {
         country: country,
         category: categoryValue);
   }
+
+  @override
+  Future<HttpResponse<ArticleResultModel>> searchArticles(
+      {required int page, required int pageSize, required String query}) {
+    return newsApi.searchArticles(
+        page: page, pageSize: pageSize, qInTitle: query);
+  }
 }

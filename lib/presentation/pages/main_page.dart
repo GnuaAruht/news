@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/constants/ui_constants.dart';
 import '../../domain/entities/article.dart';
+import '../../injector.dart';
 import '../blocs/main/main_bloc.dart';
+import '../blocs/search/search_bloc.dart';
 import '../widgets/article_list_widget.dart';
 import 'category_list_page.dart';
 import 'search_page.dart';
@@ -39,14 +41,29 @@ class _MainAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      // backgroundColor: Colors.white,
       title: GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => const SearchPage()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => BlocProvider(
+                    create: (context) => injector.get<SearchBloc>(),
+                    child: const SearchPage(),
+                  )));
         },
         child: Container(
-          height: 50.0,
-          color: Colors.red,
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+          decoration: ShapeDecoration(
+              color: Colors.grey[400], shape: const StadiumBorder()),
+          child: Row(
+            children: const [
+              Icon(Icons.search),
+              SizedBox(
+                width: DEFAULT_PADDING,
+              ),
+              Text('Search News',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
+            ],
+          ),
         ),
       ),
       actions: [

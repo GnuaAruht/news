@@ -17,4 +17,11 @@ abstract class NewsApi {
     @Query('country') required String country,
     @Query('category') required String category,
   });
+
+  @GET('/everything')
+  Future<HttpResponse<ArticleResultModel>> searchArticles({
+    @Query('page') required int page,
+    @Query('pageSize') required int pageSize,
+    @Query('qInTitle') required String qInTitle,
+  });
 }

@@ -17,9 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SearchEventTearOff {
   const _$SearchEventTearOff();
 
-  _Started started(Category category, String? text) {
-    return _Started(
-      category,
+  _Search search(String? text) {
+    return _Search(
       text,
     );
   }
@@ -46,7 +45,7 @@ const $SearchEvent = _$SearchEventTearOff();
 mixin _$SearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Category category, String? text) started,
+    required TResult Function(String? text) search,
     required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
@@ -54,7 +53,7 @@ mixin _$SearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -62,7 +61,7 @@ mixin _$SearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -71,7 +70,7 @@ mixin _$SearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
@@ -79,7 +78,7 @@ mixin _$SearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -87,7 +86,7 @@ mixin _$SearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -113,31 +112,26 @@ class _$SearchEventCopyWithImpl<$Res> implements $SearchEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
-  $Res call({Category category, String? text});
+abstract class _$SearchCopyWith<$Res> {
+  factory _$SearchCopyWith(_Search value, $Res Function(_Search) then) =
+      __$SearchCopyWithImpl<$Res>;
+  $Res call({String? text});
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
+class __$SearchCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
+    implements _$SearchCopyWith<$Res> {
+  __$SearchCopyWithImpl(_Search _value, $Res Function(_Search) _then)
+      : super(_value, (v) => _then(v as _Search));
 
   @override
-  _Started get _value => super._value as _Started;
+  _Search get _value => super._value as _Search;
 
   @override
   $Res call({
-    Object? category = freezed,
     Object? text = freezed,
   }) {
-    return _then(_Started(
-      category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
+    return _then(_Search(
       text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -148,81 +142,67 @@ class __$StartedCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Started with DiagnosticableTreeMixin implements _Started {
-  const _$_Started(this.category, this.text);
+class _$_Search implements _Search {
+  const _$_Search(this.text);
 
-  @override
-  final Category category;
   @override
   final String? text;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SearchEvent.started(category: $category, text: $text)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SearchEvent.started'))
-      ..add(DiagnosticsProperty('category', category))
-      ..add(DiagnosticsProperty('text', text));
+  String toString() {
+    return 'SearchEvent.search(text: $text)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Started &&
-            const DeepCollectionEquality().equals(other.category, category) &&
+            other is _Search &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(text));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
-  _$StartedCopyWith<_Started> get copyWith =>
-      __$StartedCopyWithImpl<_Started>(this, _$identity);
+  _$SearchCopyWith<_Search> get copyWith =>
+      __$SearchCopyWithImpl<_Search>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Category category, String? text) started,
+    required TResult Function(String? text) search,
     required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
   }) {
-    return started(category, text);
+    return search(text);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
   }) {
-    return started?.call(category, text);
+    return search?.call(text);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(category, text);
+    if (search != null) {
+      return search(text);
     }
     return orElse();
   }
@@ -230,49 +210,47 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
   }) {
-    return started(this);
+    return search(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
   }) {
-    return started?.call(this);
+    return search?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (search != null) {
+      return search(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements SearchEvent {
-  const factory _Started(Category category, String? text) = _$_Started;
+abstract class _Search implements SearchEvent {
+  const factory _Search(String? text) = _$_Search;
 
-  Category get category;
   String? get text;
   @JsonKey(ignore: true)
-  _$StartedCopyWith<_Started> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$SearchCopyWith<_Search> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -308,23 +286,15 @@ class __$ChangeTextCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
+class _$_ChangeText implements _ChangeText {
   const _$_ChangeText(this.text);
 
   @override
   final String text;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'SearchEvent.changeText(text: $text)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SearchEvent.changeText'))
-      ..add(DiagnosticsProperty('text', text));
   }
 
   @override
@@ -347,7 +317,7 @@ class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Category category, String? text) started,
+    required TResult Function(String? text) search,
     required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
@@ -358,7 +328,7 @@ class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -369,7 +339,7 @@ class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -384,7 +354,7 @@ class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
@@ -395,7 +365,7 @@ class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -406,7 +376,7 @@ class _$_ChangeText with DiagnosticableTreeMixin implements _ChangeText {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -447,18 +417,12 @@ class __$FetchNextCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
+class _$_FetchNext implements _FetchNext {
   const _$_FetchNext();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'SearchEvent.fetchNext()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SearchEvent.fetchNext'));
   }
 
   @override
@@ -473,7 +437,7 @@ class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Category category, String? text) started,
+    required TResult Function(String? text) search,
     required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
@@ -484,7 +448,7 @@ class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -495,7 +459,7 @@ class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -510,7 +474,7 @@ class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
@@ -521,7 +485,7 @@ class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -532,7 +496,7 @@ class _$_FetchNext with DiagnosticableTreeMixin implements _FetchNext {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -568,18 +532,12 @@ class __$ClearTextCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
+class _$_ClearText implements _ClearText {
   const _$_ClearText();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'SearchEvent.clearText()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SearchEvent.clearText'));
   }
 
   @override
@@ -594,7 +552,7 @@ class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Category category, String? text) started,
+    required TResult Function(String? text) search,
     required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
@@ -605,7 +563,7 @@ class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -616,7 +574,7 @@ class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Category category, String? text)? started,
+    TResult Function(String? text)? search,
     TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
@@ -631,7 +589,7 @@ class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Search value) search,
     required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
@@ -642,7 +600,7 @@ class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -653,7 +611,7 @@ class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Search value)? search,
     TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
@@ -668,170 +626,4 @@ class _$_ClearText with DiagnosticableTreeMixin implements _ClearText {
 
 abstract class _ClearText implements SearchEvent {
   const factory _ClearText() = _$_ClearText;
-}
-
-/// @nodoc
-class _$SearchStateTearOff {
-  const _$SearchStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-}
-
-/// @nodoc
-const $SearchState = _$SearchStateTearOff();
-
-/// @nodoc
-mixin _$SearchState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SearchStateCopyWith<$Res> {
-  factory $SearchStateCopyWith(
-          SearchState value, $Res Function(SearchState) then) =
-      _$SearchStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
-  _$SearchStateCopyWithImpl(this._value, this._then);
-
-  final SearchState _value;
-  // ignore: unused_field
-  final $Res Function(SearchState) _then;
-}
-
-/// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
-}
-
-/// @nodoc
-
-class _$_Initial with DiagnosticableTreeMixin implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SearchState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SearchState.initial'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements SearchState {
-  const factory _Initial() = _$_Initial;
 }
