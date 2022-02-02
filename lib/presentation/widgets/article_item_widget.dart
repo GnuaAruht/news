@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/constants/constants.dart';
-import 'package:news/domain/entities/article.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+import '../../core/constants/constants.dart';
+import '../../domain/entities/article.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final Article article;
@@ -12,12 +14,12 @@ class ArticleItemWidget extends StatelessWidget {
       onTap: () {},
       child: Container(
         height: DEFAULT_ITEM_HEIGHT,
-        padding: const EdgeInsets.all(DEFAULT_PADDING),
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            const _ImageWidget(imageUrl: 'IMAGE_URL'),
+            _ImageWidget(imageUrl: article.urlToImage ?? ''),
             const SizedBox(
-              width: DEFAULT_PADDING,
+              width: 8.0,
             ),
             Expanded(child: _ArticleInfoWidget(article: article))
           ],
@@ -33,12 +35,22 @@ class _ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 120.0,
-      height: 100.0,
-      decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(DEFAULT_BORDER_RADIUS)),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10.0),
+      child: FadeInImage.memoryNetwork(
+        width: 120.0,
+        height: 100,
+        imageErrorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: 120.0,
+            height: 100.0,
+            color: Colors.red,
+          );
+        },
+        placeholder: kTransparentImage,
+        image: imageUrl,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
@@ -62,16 +74,15 @@ class _ArticleInfoWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-                padding: const EdgeInsets.all(DEFAULT_PADDING / 2),
+                padding: const EdgeInsets.all(4.0),
                 decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius:
-                        BorderRadius.circular(DEFAULT_BORDER_RADIUS / 2)),
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(4.0)),
                 child: Text(
                   article.source.name,
                   style: const TextStyle(color: Colors.white),
                 )),
-            const Text('12/12/12')
+            Text(article.formattedDate)
           ],
         )
       ],

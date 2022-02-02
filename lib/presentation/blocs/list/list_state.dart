@@ -1,19 +1,19 @@
 part of 'list_bloc.dart';
 
-enum PagingStatus { loading, success, failure, pending }
+enum ListStatus { loading, success, failed }
 
 class ListState extends Equatable {
-  final PagingStatus status;
+  final ListStatus status;
   final List<Article> articles;
   final bool hasMaxReached;
 
   const ListState(
-      {this.status = PagingStatus.loading,
+      {this.status = ListStatus.loading,
       this.articles = const <Article>[],
       this.hasMaxReached = false});
 
   ListState copyWith(
-      {PagingStatus? pStatus, List<Article>? pArticles, bool? pHasMaxReached}) {
+      {ListStatus? pStatus, List<Article>? pArticles, bool? pHasMaxReached}) {
     return ListState(
         status: pStatus ?? status,
         articles: pArticles ?? articles,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/core/config/theme.dart';
-import 'package:news/injector.dart';
-import 'package:news/presentation/blocs/main/main_bloc.dart';
 
+import 'core/config/theme.dart';
+import 'injector.dart';
+import 'presentation/blocs/main/main_bloc.dart';
 import 'presentation/pages/main_page.dart';
 
 Future<void> main() async {
@@ -20,7 +20,7 @@ class NewsApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       debugShowCheckedModeBanner: false,
-      theme: buildlightTheme(),
+      theme: buildlightTheme(context),
       darkTheme: ThemeData.dark(),
       home: BlocProvider<MainBloc>(
         create: (context) =>

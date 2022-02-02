@@ -18,28 +18,22 @@ class ListBloc extends Bloc<ListEvent, ListState> {
 
   ListBloc(this.getTopHeadlineArticlesUsecase) : super(const ListState()) {
     on<_fetchList>((event, emit) async {
-      if (page == DEFAULT_STARTPAGE) {
-        emit(state.copyWith(pStatus: PagingStatus.loading));
-      }
-      // when has max reached
-      if (state.hasMaxReached) emit(state);
-      final _dataResult =
-          await getTopHeadlineArticlesUsecase(page, event.category);
-      if (_dataResult is DataSuccess) {
-        page++;
-        final _articles = _dataResult.data ?? [];
-        emit(_articles.isEmpty
-            ? state.copyWith(
-                pStatus: PagingStatus.success, pHasMaxReached: true)
-            : state.copyWith(
-                pStatus: PagingStatus.success,
-                pHasMaxReached: false,
-                pArticles: List.of(state.articles)..addAll(_articles)));
+      if (state.hasMaxReached) {
+        emit(state);
       } else {
-        emit(state.copyWith(
-            pStatus: state.articles.isEmpty
-                ? PagingStatus.failure
-                : PagingStatus.pending));
+        emit(state.copyWith(pStatus: ListStatus.loading));
+        final _dataResult =
+            await getTopHeadlineArticlesUsecase(page, event.category);
+        if (_dataResult is DataSuccess) {
+          page++;
+          final _articles = _dataResult.data ?? [];
+          emit(state.copyWith(
+              pStatus: ListStatus.success,
+              pHasMaxReached: _articles.isEmpty,
+              pArticles: List.of(state.articles)..addAll(_articles)));
+        } else {
+          emit(state.copyWith(pStatus: ListStatus.failed));
+        }
       }
     });
   }

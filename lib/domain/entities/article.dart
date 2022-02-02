@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 import 'source.dart';
 
@@ -33,4 +34,12 @@ class Article extends Equatable {
         publishedAt,
         content
       ];
+}
+
+extension ArticleX on Article {
+  String get formattedDate {
+    var dateTimePublishedAt =
+        DateFormat('yyyy-MM-ddTHH:mm:ssZ').parse(publishedAt, true);
+    return DateFormat('dd MMM yyyy').format(dateTimePublishedAt);
+  }
 }

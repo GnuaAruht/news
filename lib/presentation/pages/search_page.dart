@@ -1,19 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/constants/constants.dart';
 import '../../domain/entities/article.dart';
-import '../../domain/entities/category.dart';
 import '../blocs/search/search_bloc.dart';
 import '../widgets/article_item_widget.dart';
 import '../widgets/loading_list_widget.dart';
 
 class SearchPage extends StatefulWidget {
-  final Category category;
-  final String searchQuery;
-  const SearchPage(
-      {Key? key, this.category = Category.GENERAL, this.searchQuery = ''})
-      : super(key: key);
+  const SearchPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -21,8 +19,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   late SearchBloc _bloc;
-  late final _searchController =
-      TextEditingController(text: widget.searchQuery);
+  final _searchController = TextEditingController();
 
   final ScrollController _scrollController = ScrollController();
 
@@ -57,7 +54,6 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _SearchAppBar(
-          category: widget.category,
           searchController: _searchController,
           onSearch: (_) {
             _bloc.add(SearchEvent.search(_searchController.text));
@@ -76,35 +72,57 @@ class _SearchPageState extends State<SearchPage> {
           } else {
             switch (state.status) {
               case SearchStatus.initial:
-                return Container();
+                return Center(
+                    child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      CupertinoIcons.search,
+                      size: 80.0,
+                      color: Colors.black.withOpacity(0.4),
+                    ),
+                    Text(
+                      'Search News',
+                      style: TextStyle(
+                          fontSize: 18.0, color: Colors.black.withOpacity(0.5)),
+                    ),
+                  ],
+                ));
               case SearchStatus.loading:
                 return const LoadingListWidget();
               case SearchStatus.failed:
-                return Container();
+                return Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.error_outline_rounded,
+                        size: 80.0,
+                        color: Colors.black.withOpacity(0.4),
+                      ),
+                      Text('Search failed',
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.black.withOpacity(0.5))),
+                    ],
+                  ),
+                );
               case SearchStatus.success:
                 return Container();
             }
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _bloc.add(const SearchEvent.search('bitcoin'));
-        },
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }
 
 class _SearchAppBar extends StatelessWidget with PreferredSizeWidget {
-  final Category category;
   final TextEditingController searchController;
   final ValueChanged<String?> onSearch;
   final VoidCallback onClearSearch;
   const _SearchAppBar(
       {Key? key,
-      required this.category,
       required this.searchController,
       required this.onSearch,
       required this.onClearSearch})
@@ -113,8 +131,8 @@ class _SearchAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.white,
       title: _SearchWidget(
-        category: category,
         searchController: searchController,
         onSearch: onSearch,
         onClearSearch: onClearSearch,
@@ -127,13 +145,11 @@ class _SearchAppBar extends StatelessWidget with PreferredSizeWidget {
 }
 
 class _SearchWidget extends StatelessWidget {
-  final Category category;
   final TextEditingController searchController;
   final ValueChanged<String?> onSearch;
   final VoidCallback onClearSearch;
   const _SearchWidget(
       {Key? key,
-      required this.category,
       required this.searchController,
       required this.onSearch,
       required this.onClearSearch})
@@ -145,10 +161,10 @@ class _SearchWidget extends StatelessWidget {
       controller: searchController,
       textInputAction: TextInputAction.search,
       onSubmitted: onSearch,
-      decoration: InputDecoration(
-          hintText: 'Search ${category.title} News',
+      decoration: const InputDecoration(
+          hintText: 'Search News',
           border: InputBorder.none,
-          suffix: const Icon(Icons.close)),
+          suffix: Icon(Icons.close)),
     );
   }
 }

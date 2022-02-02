@@ -40,7 +40,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<_FetchNext>((event, emit) async {
       if (state.hasMaxReached) emit(state);
       emit(state.copyWith(pStatus: SearchStatus.loading));
-      print('Fetching page : $page');
       final _dataState = await searchArticleUsecase(page, currentQuery);
       if (_dataState is DataSuccess) {
         page++;
