@@ -15,10 +15,9 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   final GetTopHeadlineArticlesUsecase getTopHeadlineArticlesUsecase;
 
   MainBloc(this.getTopHeadlineArticlesUsecase)
-      : super(const MainState.initial()) {
-    on<_FetchNewsList>((event, emit) async {
+      : super(const MainState.loading()) {
+    on<_FetchArticles>((event, emit) async {
       emit(const MainState.loading());
-      // category general is default in main page
       final dataState = await getTopHeadlineArticlesUsecase(
           DEFAULT_STARTPAGE, Category.GENERAL);
       if (dataState is DataSuccess) {

@@ -9,6 +9,7 @@ import '../../domain/entities/article.dart';
 import '../../domain/entities/category.dart';
 import '../blocs/main/main_bloc.dart';
 import '../widgets/article_item_widget.dart';
+import '../widgets/loading_failed_widget.dart';
 import '../widgets/loading_list_widget.dart';
 import '../widgets/loading_widget.dart';
 import 'article_list_page.dart';
@@ -23,14 +24,21 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: const _MainAppBar(),
       body: RefreshIndicator(
-        onRefresh: () async {},
+        onRefresh: () async {
+          context.read<MainBloc>().add(const MainEvent.fetchArticles());
+        },
         child: BlocBuilder<MainBloc, MainState>(
           builder: (context, state) {
             return state.when(
-                initial: () => const SizedBox.shrink(),
                 loading: () => const _MainLoadingListWidget(),
                 fetched: (articles) => _MainView(articles: articles),
-                error: (errorMessage) => Text(errorMessage));
+                error: (_) => LoadingFailedWidget(
+                      onRetry: () {
+                        context
+                            .read<MainBloc>()
+                            .add(const MainEvent.fetchArticles());
+                      },
+                    ));
           },
         ),
       ),
@@ -76,10 +84,8 @@ class _MainAppBar extends StatelessWidget with PreferredSizeWidget {
                       as Category?;
 
               if (_category != null) {
-                await Future.delayed(const Duration(milliseconds: 100)).then(
-                    (_) => Navigator.pushNamed(
-                        context, ArticleListPage.routeName,
-                        arguments: _category));
+                Navigator.pushNamed(context, ArticleListPage.routeName,
+                    arguments: _category);
               }
             },
             icon: const Icon(
@@ -109,7 +115,7 @@ class _MainView extends StatelessWidget {
           const SizedBox(
             height: 12.0,
           ),
-          _RecentArticleListWidget(articles: articles),
+          _RecentArticleListWidget(articles: articles.sublist(5)),
         ],
       ),
     );
@@ -411,6 +417,26 @@ class _MainLoadingListWidget extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _MainLoadingFailedWidget extends StatelessWidget {
+  const _MainLoadingFailedWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.error_outline_rounded,
+            size: 50.0,
+          ),
+          Text('Loading failed')
+        ],
       ),
     );
   }

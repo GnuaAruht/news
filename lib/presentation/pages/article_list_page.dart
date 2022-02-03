@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/presentation/widgets/loading_failed_widget.dart';
 
 import '../../core/constants/ui_constants.dart';
 import '../../domain/entities/article.dart';
@@ -55,41 +56,35 @@ class _ArticleListPageState extends State<ArticleListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _Appbar(category: widget.category),
-      body: BlocBuilder<ListBloc, ListState>(
-        builder: (context, state) {
-          if (state.articles.isNotEmpty) {
-            return _ArticleListWidget(
-              category: widget.category,
-              articles: state.articles,
-              hasMaxReached: state.hasMaxReached,
-              scrollController: _scrollController,
-            );
-          } else {
-            switch (state.status) {
-              case ListStatus.loading:
-                return const LoadingListWidget();
-              case ListStatus.failed:
-                return Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.error_outline_rounded,
-                        size: 80.0,
-                        color: Colors.black.withOpacity(0.4),
-                      ),
-                      Text('Load failed',
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              color: Colors.black.withOpacity(0.5))),
-                    ],
-                  ),
-                );
-              default:
-                return SizedBox.fromSize();
-            }
-          }
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _bloc.add(ListEvent.refreshList(widget.category));
         },
+        child: BlocBuilder<ListBloc, ListState>(
+          builder: (context, state) {
+            if (state.articles.isNotEmpty) {
+              return _ArticleListWidget(
+                category: widget.category,
+                articles: state.articles,
+                hasMaxReached: state.hasMaxReached,
+                scrollController: _scrollController,
+              );
+            } else {
+              switch (state.status) {
+                case ListStatus.loading:
+                  return const LoadingListWidget();
+                case ListStatus.failed:
+                  return LoadingFailedWidget(
+                    onRetry: () {
+                      _bloc.add(ListEvent.refreshList(widget.category));
+                    },
+                  );
+                default:
+                  return SizedBox.fromSize();
+              }
+            }
+          },
+        ),
       ),
     );
   }

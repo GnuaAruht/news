@@ -1,11 +1,16 @@
+import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:news/domain/entities/source.dart';
+
+import '../../domain/entities/source.dart';
 
 part 'source_model.g.dart';
 
 @JsonSerializable()
+@HiveType(typeId: 1)
 class SourceModel {
+  @HiveField(0)
   final String? id;
+  @HiveField(1)
   final String name;
 
   SourceModel(this.id, this.name);

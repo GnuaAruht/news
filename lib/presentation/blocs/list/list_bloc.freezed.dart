@@ -17,8 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ListEventTearOff {
   const _$ListEventTearOff();
 
-  _fetchList fetchList(Category category) {
-    return _fetchList(
+  _FetchList fetchList(Category category) {
+    return _FetchList(
+      category,
+    );
+  }
+
+  _RefreshList refreshList(Category category) {
+    return _RefreshList(
       category,
     );
   }
@@ -34,32 +40,38 @@ mixin _$ListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Category category) fetchList,
+    required TResult Function(Category category) refreshList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Category category)? fetchList,
+    TResult Function(Category category)? refreshList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Category category)? fetchList,
+    TResult Function(Category category)? refreshList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_fetchList value) fetchList,
+    required TResult Function(_FetchList value) fetchList,
+    required TResult Function(_RefreshList value) refreshList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_fetchList value)? fetchList,
+    TResult Function(_FetchList value)? fetchList,
+    TResult Function(_RefreshList value)? refreshList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_fetchList value)? fetchList,
+    TResult Function(_FetchList value)? fetchList,
+    TResult Function(_RefreshList value)? refreshList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -98,28 +110,28 @@ class _$ListEventCopyWithImpl<$Res> implements $ListEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$fetchListCopyWith<$Res> implements $ListEventCopyWith<$Res> {
-  factory _$fetchListCopyWith(
-          _fetchList value, $Res Function(_fetchList) then) =
-      __$fetchListCopyWithImpl<$Res>;
+abstract class _$FetchListCopyWith<$Res> implements $ListEventCopyWith<$Res> {
+  factory _$FetchListCopyWith(
+          _FetchList value, $Res Function(_FetchList) then) =
+      __$FetchListCopyWithImpl<$Res>;
   @override
   $Res call({Category category});
 }
 
 /// @nodoc
-class __$fetchListCopyWithImpl<$Res> extends _$ListEventCopyWithImpl<$Res>
-    implements _$fetchListCopyWith<$Res> {
-  __$fetchListCopyWithImpl(_fetchList _value, $Res Function(_fetchList) _then)
-      : super(_value, (v) => _then(v as _fetchList));
+class __$FetchListCopyWithImpl<$Res> extends _$ListEventCopyWithImpl<$Res>
+    implements _$FetchListCopyWith<$Res> {
+  __$FetchListCopyWithImpl(_FetchList _value, $Res Function(_FetchList) _then)
+      : super(_value, (v) => _then(v as _FetchList));
 
   @override
-  _fetchList get _value => super._value as _fetchList;
+  _FetchList get _value => super._value as _FetchList;
 
   @override
   $Res call({
     Object? category = freezed,
   }) {
-    return _then(_fetchList(
+    return _then(_FetchList(
       category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -130,8 +142,8 @@ class __$fetchListCopyWithImpl<$Res> extends _$ListEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_fetchList implements _fetchList {
-  const _$_fetchList(this.category);
+class _$_FetchList implements _FetchList {
+  const _$_FetchList(this.category);
 
   @override
   final Category category;
@@ -145,7 +157,7 @@ class _$_fetchList implements _fetchList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _fetchList &&
+            other is _FetchList &&
             const DeepCollectionEquality().equals(other.category, category));
   }
 
@@ -155,13 +167,14 @@ class _$_fetchList implements _fetchList {
 
   @JsonKey(ignore: true)
   @override
-  _$fetchListCopyWith<_fetchList> get copyWith =>
-      __$fetchListCopyWithImpl<_fetchList>(this, _$identity);
+  _$FetchListCopyWith<_FetchList> get copyWith =>
+      __$FetchListCopyWithImpl<_FetchList>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Category category) fetchList,
+    required TResult Function(Category category) refreshList,
   }) {
     return fetchList(category);
   }
@@ -170,6 +183,7 @@ class _$_fetchList implements _fetchList {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Category category)? fetchList,
+    TResult Function(Category category)? refreshList,
   }) {
     return fetchList?.call(category);
   }
@@ -178,6 +192,7 @@ class _$_fetchList implements _fetchList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Category category)? fetchList,
+    TResult Function(Category category)? refreshList,
     required TResult orElse(),
   }) {
     if (fetchList != null) {
@@ -189,7 +204,8 @@ class _$_fetchList implements _fetchList {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_fetchList value) fetchList,
+    required TResult Function(_FetchList value) fetchList,
+    required TResult Function(_RefreshList value) refreshList,
   }) {
     return fetchList(this);
   }
@@ -197,7 +213,8 @@ class _$_fetchList implements _fetchList {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_fetchList value)? fetchList,
+    TResult Function(_FetchList value)? fetchList,
+    TResult Function(_RefreshList value)? refreshList,
   }) {
     return fetchList?.call(this);
   }
@@ -205,7 +222,8 @@ class _$_fetchList implements _fetchList {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_fetchList value)? fetchList,
+    TResult Function(_FetchList value)? fetchList,
+    TResult Function(_RefreshList value)? refreshList,
     required TResult orElse(),
   }) {
     if (fetchList != null) {
@@ -215,13 +233,149 @@ class _$_fetchList implements _fetchList {
   }
 }
 
-abstract class _fetchList implements ListEvent {
-  const factory _fetchList(Category category) = _$_fetchList;
+abstract class _FetchList implements ListEvent {
+  const factory _FetchList(Category category) = _$_FetchList;
 
   @override
   Category get category;
   @override
   @JsonKey(ignore: true)
-  _$fetchListCopyWith<_fetchList> get copyWith =>
+  _$FetchListCopyWith<_FetchList> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$RefreshListCopyWith<$Res> implements $ListEventCopyWith<$Res> {
+  factory _$RefreshListCopyWith(
+          _RefreshList value, $Res Function(_RefreshList) then) =
+      __$RefreshListCopyWithImpl<$Res>;
+  @override
+  $Res call({Category category});
+}
+
+/// @nodoc
+class __$RefreshListCopyWithImpl<$Res> extends _$ListEventCopyWithImpl<$Res>
+    implements _$RefreshListCopyWith<$Res> {
+  __$RefreshListCopyWithImpl(
+      _RefreshList _value, $Res Function(_RefreshList) _then)
+      : super(_value, (v) => _then(v as _RefreshList));
+
+  @override
+  _RefreshList get _value => super._value as _RefreshList;
+
+  @override
+  $Res call({
+    Object? category = freezed,
+  }) {
+    return _then(_RefreshList(
+      category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RefreshList implements _RefreshList {
+  const _$_RefreshList(this.category);
+
+  @override
+  final Category category;
+
+  @override
+  String toString() {
+    return 'ListEvent.refreshList(category: $category)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _RefreshList &&
+            const DeepCollectionEquality().equals(other.category, category));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(category));
+
+  @JsonKey(ignore: true)
+  @override
+  _$RefreshListCopyWith<_RefreshList> get copyWith =>
+      __$RefreshListCopyWithImpl<_RefreshList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Category category) fetchList,
+    required TResult Function(Category category) refreshList,
+  }) {
+    return refreshList(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Category category)? fetchList,
+    TResult Function(Category category)? refreshList,
+  }) {
+    return refreshList?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Category category)? fetchList,
+    TResult Function(Category category)? refreshList,
+    required TResult orElse(),
+  }) {
+    if (refreshList != null) {
+      return refreshList(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchList value) fetchList,
+    required TResult Function(_RefreshList value) refreshList,
+  }) {
+    return refreshList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_FetchList value)? fetchList,
+    TResult Function(_RefreshList value)? refreshList,
+  }) {
+    return refreshList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchList value)? fetchList,
+    TResult Function(_RefreshList value)? refreshList,
+    required TResult orElse(),
+  }) {
+    if (refreshList != null) {
+      return refreshList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RefreshList implements ListEvent {
+  const factory _RefreshList(Category category) = _$_RefreshList;
+
+  @override
+  Category get category;
+  @override
+  @JsonKey(ignore: true)
+  _$RefreshListCopyWith<_RefreshList> get copyWith =>
       throw _privateConstructorUsedError;
 }

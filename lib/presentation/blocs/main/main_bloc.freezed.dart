@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MainEventTearOff {
   const _$MainEventTearOff();
 
-  _FetchNewsList fetchNewsList() {
-    return const _FetchNewsList();
+  _FetchArticles fetchArticles() {
+    return const _FetchArticles();
   }
 }
 
@@ -29,33 +29,33 @@ const $MainEvent = _$MainEventTearOff();
 mixin _$MainEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchNewsList,
+    required TResult Function() fetchArticles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchNewsList,
+    TResult Function()? fetchArticles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchNewsList,
+    TResult Function()? fetchArticles,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchNewsList value) fetchNewsList,
+    required TResult Function(_FetchArticles value) fetchArticles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchNewsList value)? fetchNewsList,
+    TResult Function(_FetchArticles value)? fetchArticles,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchNewsList value)? fetchNewsList,
+    TResult Function(_FetchArticles value)? fetchArticles,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -77,37 +77,37 @@ class _$MainEventCopyWithImpl<$Res> implements $MainEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$FetchNewsListCopyWith<$Res> {
-  factory _$FetchNewsListCopyWith(
-          _FetchNewsList value, $Res Function(_FetchNewsList) then) =
-      __$FetchNewsListCopyWithImpl<$Res>;
+abstract class _$FetchArticlesCopyWith<$Res> {
+  factory _$FetchArticlesCopyWith(
+          _FetchArticles value, $Res Function(_FetchArticles) then) =
+      __$FetchArticlesCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FetchNewsListCopyWithImpl<$Res> extends _$MainEventCopyWithImpl<$Res>
-    implements _$FetchNewsListCopyWith<$Res> {
-  __$FetchNewsListCopyWithImpl(
-      _FetchNewsList _value, $Res Function(_FetchNewsList) _then)
-      : super(_value, (v) => _then(v as _FetchNewsList));
+class __$FetchArticlesCopyWithImpl<$Res> extends _$MainEventCopyWithImpl<$Res>
+    implements _$FetchArticlesCopyWith<$Res> {
+  __$FetchArticlesCopyWithImpl(
+      _FetchArticles _value, $Res Function(_FetchArticles) _then)
+      : super(_value, (v) => _then(v as _FetchArticles));
 
   @override
-  _FetchNewsList get _value => super._value as _FetchNewsList;
+  _FetchArticles get _value => super._value as _FetchArticles;
 }
 
 /// @nodoc
 
-class _$_FetchNewsList implements _FetchNewsList {
-  const _$_FetchNewsList();
+class _$_FetchArticles implements _FetchArticles {
+  const _$_FetchArticles();
 
   @override
   String toString() {
-    return 'MainEvent.fetchNewsList()';
+    return 'MainEvent.fetchArticles()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FetchNewsList);
+        (other.runtimeType == runtimeType && other is _FetchArticles);
   }
 
   @override
@@ -116,27 +116,27 @@ class _$_FetchNewsList implements _FetchNewsList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchNewsList,
+    required TResult Function() fetchArticles,
   }) {
-    return fetchNewsList();
+    return fetchArticles();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchNewsList,
+    TResult Function()? fetchArticles,
   }) {
-    return fetchNewsList?.call();
+    return fetchArticles?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchNewsList,
+    TResult Function()? fetchArticles,
     required TResult orElse(),
   }) {
-    if (fetchNewsList != null) {
-      return fetchNewsList();
+    if (fetchArticles != null) {
+      return fetchArticles();
     }
     return orElse();
   }
@@ -144,43 +144,39 @@ class _$_FetchNewsList implements _FetchNewsList {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchNewsList value) fetchNewsList,
+    required TResult Function(_FetchArticles value) fetchArticles,
   }) {
-    return fetchNewsList(this);
+    return fetchArticles(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchNewsList value)? fetchNewsList,
+    TResult Function(_FetchArticles value)? fetchArticles,
   }) {
-    return fetchNewsList?.call(this);
+    return fetchArticles?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchNewsList value)? fetchNewsList,
+    TResult Function(_FetchArticles value)? fetchArticles,
     required TResult orElse(),
   }) {
-    if (fetchNewsList != null) {
-      return fetchNewsList(this);
+    if (fetchArticles != null) {
+      return fetchArticles(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchNewsList implements MainEvent {
-  const factory _FetchNewsList() = _$_FetchNewsList;
+abstract class _FetchArticles implements MainEvent {
+  const factory _FetchArticles() = _$_FetchArticles;
 }
 
 /// @nodoc
 class _$MainStateTearOff {
   const _$MainStateTearOff();
-
-  _$MainInitial initial() {
-    return const _$MainInitial();
-  }
 
   _$MainLoading loading() {
     return const _$MainLoading();
@@ -206,7 +202,6 @@ const $MainState = _$MainStateTearOff();
 mixin _$MainState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Article> articles) fetched,
     required TResult Function(String errorMessage) error,
@@ -214,7 +209,6 @@ mixin _$MainState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -222,7 +216,6 @@ mixin _$MainState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -231,7 +224,6 @@ mixin _$MainState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_$MainInitial value) initial,
     required TResult Function(_$MainLoading value) loading,
     required TResult Function(_$MainFetched value) fetched,
     required TResult Function(_$MainError value) error,
@@ -239,7 +231,6 @@ mixin _$MainState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,
@@ -247,7 +238,6 @@ mixin _$MainState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,
@@ -269,122 +259,6 @@ class _$MainStateCopyWithImpl<$Res> implements $MainStateCopyWith<$Res> {
   final MainState _value;
   // ignore: unused_field
   final $Res Function(MainState) _then;
-}
-
-/// @nodoc
-abstract class _$$MainInitialCopyWith<$Res> {
-  factory _$$MainInitialCopyWith(
-          _$MainInitial value, $Res Function(_$MainInitial) then) =
-      __$$MainInitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$MainInitialCopyWithImpl<$Res> extends _$MainStateCopyWithImpl<$Res>
-    implements _$$MainInitialCopyWith<$Res> {
-  __$$MainInitialCopyWithImpl(
-      _$MainInitial _value, $Res Function(_$MainInitial) _then)
-      : super(_value, (v) => _then(v as _$MainInitial));
-
-  @override
-  _$MainInitial get _value => super._value as _$MainInitial;
-}
-
-/// @nodoc
-
-class _$_$MainInitial implements _$MainInitial {
-  const _$_$MainInitial();
-
-  @override
-  String toString() {
-    return 'MainState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$MainInitial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Article> articles) fetched,
-    required TResult Function(String errorMessage) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Article> articles)? fetched,
-    TResult Function(String errorMessage)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Article> articles)? fetched,
-    TResult Function(String errorMessage)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_$MainInitial value) initial,
-    required TResult Function(_$MainLoading value) loading,
-    required TResult Function(_$MainFetched value) fetched,
-    required TResult Function(_$MainError value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
-    TResult Function(_$MainLoading value)? loading,
-    TResult Function(_$MainFetched value)? fetched,
-    TResult Function(_$MainError value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
-    TResult Function(_$MainLoading value)? loading,
-    TResult Function(_$MainFetched value)? fetched,
-    TResult Function(_$MainError value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _$MainInitial implements MainState {
-  const factory _$MainInitial() = _$_$MainInitial;
 }
 
 /// @nodoc
@@ -427,7 +301,6 @@ class _$_$MainLoading implements _$MainLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Article> articles) fetched,
     required TResult Function(String errorMessage) error,
@@ -438,7 +311,6 @@ class _$_$MainLoading implements _$MainLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -449,7 +321,6 @@ class _$_$MainLoading implements _$MainLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -464,7 +335,6 @@ class _$_$MainLoading implements _$MainLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_$MainInitial value) initial,
     required TResult Function(_$MainLoading value) loading,
     required TResult Function(_$MainFetched value) fetched,
     required TResult Function(_$MainError value) error,
@@ -475,7 +345,6 @@ class _$_$MainLoading implements _$MainLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,
@@ -486,7 +355,6 @@ class _$_$MainLoading implements _$MainLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,
@@ -567,7 +435,6 @@ class _$_$MainFetched implements _$MainFetched {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Article> articles) fetched,
     required TResult Function(String errorMessage) error,
@@ -578,7 +445,6 @@ class _$_$MainFetched implements _$MainFetched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -589,7 +455,6 @@ class _$_$MainFetched implements _$MainFetched {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -604,7 +469,6 @@ class _$_$MainFetched implements _$MainFetched {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_$MainInitial value) initial,
     required TResult Function(_$MainLoading value) loading,
     required TResult Function(_$MainFetched value) fetched,
     required TResult Function(_$MainError value) error,
@@ -615,7 +479,6 @@ class _$_$MainFetched implements _$MainFetched {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,
@@ -626,7 +489,6 @@ class _$_$MainFetched implements _$MainFetched {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,
@@ -713,7 +575,6 @@ class _$_$MainError implements _$MainError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Article> articles) fetched,
     required TResult Function(String errorMessage) error,
@@ -724,7 +585,6 @@ class _$_$MainError implements _$MainError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -735,7 +595,6 @@ class _$_$MainError implements _$MainError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Article> articles)? fetched,
     TResult Function(String errorMessage)? error,
@@ -750,7 +609,6 @@ class _$_$MainError implements _$MainError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_$MainInitial value) initial,
     required TResult Function(_$MainLoading value) loading,
     required TResult Function(_$MainFetched value) fetched,
     required TResult Function(_$MainError value) error,
@@ -761,7 +619,6 @@ class _$_$MainError implements _$MainError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,
@@ -772,7 +629,6 @@ class _$_$MainError implements _$MainError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_$MainInitial value)? initial,
     TResult Function(_$MainLoading value)? loading,
     TResult Function(_$MainFetched value)? fetched,
     TResult Function(_$MainError value)? error,

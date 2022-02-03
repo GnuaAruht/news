@@ -17,7 +17,14 @@ class ListBloc extends Bloc<ListEvent, ListState> {
   int page = DEFAULT_STARTPAGE;
 
   ListBloc(this.getTopHeadlineArticlesUsecase) : super(const ListState()) {
-    on<_fetchList>((event, emit) async {
+    on<_RefreshList>((event, emit) async {
+      page = DEFAULT_STARTPAGE;
+      emit(state.copyWith(
+          pStatus: ListStatus.loading, pArticles: [], pHasMaxReached: false));
+      add(_FetchList(event.category));
+    });
+
+    on<_FetchList>((event, emit) async {
       if (state.hasMaxReached) {
         emit(state);
       } else {

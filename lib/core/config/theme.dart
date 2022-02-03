@@ -8,11 +8,12 @@ ThemeData buildlightTheme(BuildContext context) {
         Theme.of(context).textTheme,
       ),
       appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 20.0),
           elevation: 0.0,
           centerTitle: true),
       colorScheme: const ColorScheme.light(
-        primary: Colors.white,
+        primary: Colors.blue,
       ));
 }
