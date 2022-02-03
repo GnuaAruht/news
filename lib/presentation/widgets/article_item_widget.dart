@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/presentation/pages/article_detail_page.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../../core/constants/constants.dart';
@@ -11,7 +12,10 @@ class ArticleItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, ArticleDetailPage.routeName,
+            arguments: article);
+      },
       child: Container(
         height: DEFAULT_ITEM_HEIGHT,
         padding: const EdgeInsets.all(8.0),
@@ -44,7 +48,8 @@ class _ImageWidget extends StatelessWidget {
           return Container(
             width: 120.0,
             height: 100.0,
-            color: Colors.red,
+            color: Colors.red.withOpacity(0.6),
+            child: const Icon(Icons.error_outline_outlined),
           );
         },
         placeholder: kTransparentImage,
@@ -62,10 +67,11 @@ class _ArticleInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: Text(
-            article.title,
+            article.title.trim(),
             maxLines: 2,
             style: const TextStyle(overflow: TextOverflow.ellipsis),
           ),
@@ -80,9 +86,14 @@ class _ArticleInfoWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4.0)),
                 child: Text(
                   article.source.name,
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
                 )),
-            Text(article.formattedDate)
+            Text(
+              article.formattedDate,
+              style: const TextStyle(fontSize: 12.0),
+            )
           ],
         )
       ],

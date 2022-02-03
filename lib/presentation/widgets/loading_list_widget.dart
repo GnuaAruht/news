@@ -12,6 +12,7 @@ class LoadingListWidget extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
+      enabled: false,
       child: ListView.separated(
         itemCount: 60,
         physics: const NeverScrollableScrollPhysics(),

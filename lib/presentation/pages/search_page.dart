@@ -9,6 +9,8 @@ import '../widgets/article_item_widget.dart';
 import '../widgets/loading_list_widget.dart';
 
 class SearchPage extends StatefulWidget {
+  static const routeName = '/search';
+
   const SearchPage({
     Key? key,
   }) : super(key: key);
@@ -185,6 +187,7 @@ class _ArticleListWidget extends StatelessWidget {
     return ListView.builder(
         controller: scrollController,
         itemCount: hasMaxReached ? articles.length : articles.length + 1,
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
         itemBuilder: (context, index) {
           return index < articles.length
               ? ArticleItemWidget(article: articles[index])

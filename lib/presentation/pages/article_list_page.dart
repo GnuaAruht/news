@@ -11,6 +11,8 @@ import '../widgets/loading_list_widget.dart';
 import 'search_page.dart';
 
 class ArticleListPage extends StatefulWidget {
+  static const routeName = '/articleList';
+
   final Category category;
   const ArticleListPage({Key? key, this.category = Category.GENERAL})
       : super(key: key);
@@ -111,8 +113,7 @@ class _Appbar extends StatelessWidget with PreferredSizeWidget {
         IconButton(
           icon: const Icon(CupertinoIcons.search),
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const SearchPage()));
+            Navigator.pushNamed(context, SearchPage.routeName);
           },
         )
       ],
@@ -141,10 +142,12 @@ class _ArticleListWidget extends StatelessWidget {
     return ListView.builder(
         controller: scrollController,
         itemCount: hasMaxReached ? articles.length : articles.length + 1,
-        padding: const EdgeInsets.all(DEFAULT_PADDING),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
         itemBuilder: (context, index) {
           return index < articles.length
-              ? ArticleItemWidget(article: articles[index])
+              ? ArticleItemWidget(
+                  key: ValueKey(articles[index].title),
+                  article: articles[index])
               : _LoadingItemWidget(
                   category: category,
                 );

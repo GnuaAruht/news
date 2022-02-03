@@ -1,14 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:news/domain/entities/category.dart';
-import 'package:news/domain/usecases/search_articles_usecase.dart';
-import 'package:news/temp.dart';
 
 import '../../core/constants/constants.dart';
 import '../../core/resources/data_state.dart';
 import '../../domain/entities/article.dart';
+import '../../domain/entities/category.dart';
 import '../../domain/repositories/news_repository.dart';
 import '../data_sources/local/news_local_data_source.dart';
 import '../data_sources/remote/news_remote_data_source.dart';
@@ -27,32 +24,30 @@ class NewsRepositoryImpl extends NewsRepository {
       required Category category,
       int pageSize = DEFAULT_PAGE_SIZE,
       String country = 'us'}) async {
-    // try {
-    //   final _response = await remoteDataSource.getTopHeadlineArticles(
-    //       page: page,
-    //       categoryValue: category.value,
-    //       pageSize: pageSize,
-    //       country: country);
+    try {
+      final _response = await remoteDataSource.getTopHeadlineArticles(
+          page: page,
+          categoryValue: category.value,
+          pageSize: pageSize,
+          country: country);
 
-    //   if (_response.response.statusCode == HttpStatus.ok) {
-    //     final _models = _response.data.articles;
-    //     return DataSuccess(
-    //         data: _models.map((model) => model.toEntity()).toList());
-    //   } else {
-    //     return DataFailed(
-    //       error: DioError(
-    //         error: _response.response.statusMessage,
-    //         response: _response.response,
-    //         type: DioErrorType.response,
-    //         requestOptions: _response.response.requestOptions,
-    //       ),
-    //     );
-    //   }
-    // } on DioError catch (e) {
-    //   return DataFailed(error: e);
-    // }
-    await Future.delayed(const Duration(seconds: 5));
-    return DataSuccess(data: tempArticleList);
+      if (_response.response.statusCode == HttpStatus.ok) {
+        final _models = _response.data.articles;
+        return DataSuccess(
+            data: _models.map((model) => model.toEntity()).toList());
+      } else {
+        return DataFailed(
+          error: DioError(
+            error: _response.response.statusMessage,
+            response: _response.response,
+            type: DioErrorType.response,
+            requestOptions: _response.response.requestOptions,
+          ),
+        );
+      }
+    } on DioError catch (e) {
+      return DataFailed(error: e);
+    }
   }
 
   @override

@@ -2,15 +2,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../../core/constants/ui_constants.dart';
 import '../../domain/entities/article.dart';
-import '../../injector.dart';
+import '../../domain/entities/category.dart';
 import '../blocs/main/main_bloc.dart';
-import '../blocs/search/search_bloc.dart';
 import '../widgets/article_item_widget.dart';
 import '../widgets/loading_list_widget.dart';
 import '../widgets/loading_widget.dart';
+import 'article_list_page.dart';
 import 'category_list_page.dart';
 import 'search_page.dart';
 
@@ -45,11 +46,7 @@ class _MainAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) => BlocProvider(
-                    create: (context) => injector.get<SearchBloc>(),
-                    child: const SearchPage(),
-                  )));
+          Navigator.of(context).pushNamed(SearchPage.routeName);
         },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
@@ -73,9 +70,17 @@ class _MainAppBar extends StatelessWidget with PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const CategoryListPage()));
+            onPressed: () async {
+              final Category? _category =
+                  await Navigator.pushNamed(context, CategoryListPage.routeName)
+                      as Category?;
+
+              if (_category != null) {
+                await Future.delayed(const Duration(milliseconds: 100)).then(
+                    (_) => Navigator.pushNamed(
+                        context, ArticleListPage.routeName,
+                        arguments: _category));
+              }
             },
             icon: const Icon(
               Icons.menu,
@@ -202,8 +207,19 @@ class _TopArticleItemWidget extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.network(
-              article.urlToImage ?? '',
+            FadeInImage.memoryNetwork(
+              width: 120.0,
+              height: 100,
+              imageErrorBuilder: (context, error, stackTrace) {
+                return Container(
+                  width: 120.0,
+                  height: 100.0,
+                  color: Colors.red.withOpacity(0.6),
+                  child: const Icon(Icons.error_outline_outlined),
+                );
+              },
+              placeholder: kTransparentImage,
+              image: article.urlToImage ?? '',
               fit: BoxFit.cover,
             ),
             Container(
@@ -337,7 +353,7 @@ class _MainLoadingListWidget extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
-      enabled: true,
+      enabled: false,
       child: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Column(

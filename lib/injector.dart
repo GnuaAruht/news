@@ -30,7 +30,7 @@ Future<void> initDepedencies() async {
 void _injectNetworkConfig() {
   injector.registerSingleton<Dio>(Dio(BaseOptions(
     baseUrl: BASE_URL,
-    headers: <String, dynamic>{'X-Api-Key': API_KEY2},
+    headers: <String, dynamic>{'X-Api-Key': API_KEY3},
     connectTimeout: 100000,
   )));
 }

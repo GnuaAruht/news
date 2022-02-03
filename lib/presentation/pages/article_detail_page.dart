@@ -7,6 +7,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../domain/entities/article.dart';
 
 class ArticleDetailPage extends StatefulWidget {
+  static const routeName = '/articleDetail';
   final Article article;
   const ArticleDetailPage({Key? key, required this.article}) : super(key: key);
 
@@ -27,17 +28,18 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.article.url,
-      onWebViewCreated: (WebViewController webViewController) {
-        _controller.complete(webViewController);
-      },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.article.source.name),
+        ),
+        body: WebView(
+          initialUrl: widget.article.url,
+          onWebViewCreated: (WebViewController webViewController) {
+            _controller.complete(webViewController);
+          },
+        ),
+      ),
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text('Article Detail Page'),
-    //   ),
-    //   body: ,
-    // );
   }
 }
