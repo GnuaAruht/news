@@ -2,7 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import 'core/constants/api_key.dart';
+import 'core/constants/api_key_sample.dart';
 import 'core/constants/constants.dart';
 import 'core/network/network_info.dart';
 import 'data/data_sources/local/news_local_data_source.dart';
@@ -33,7 +33,7 @@ Future<void> initDepedencies() async {
 void _injectNetworkConfig() {
   injector.registerSingleton<Dio>(Dio(BaseOptions(
     baseUrl: BASE_URL,
-    headers: <String, dynamic>{'X-Api-Key': API_KEY3},
+    headers: <String, dynamic>{'X-Api-Key': API_KEY},
     connectTimeout: 100000,
   )));
   injector.registerLazySingleton<NetworkInfo>(
