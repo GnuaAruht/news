@@ -23,18 +23,18 @@ class _$SearchEventTearOff {
     );
   }
 
-  _ChangeText changeText(String text) {
-    return _ChangeText(
-      text,
-    );
-  }
-
   _FetchNext fetchNext() {
     return const _FetchNext();
   }
 
   _ClearText clearText() {
     return const _ClearText();
+  }
+
+  _Refresh refresh(String? text) {
+    return _Refresh(
+      text,
+    );
   }
 }
 
@@ -46,50 +46,50 @@ mixin _$SearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? text) search,
-    required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
+    required TResult Function(String? text) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Search value) search,
-    required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
+    required TResult Function(_Refresh value) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -174,9 +174,9 @@ class _$_Search implements _Search {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? text) search,
-    required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
+    required TResult Function(String? text) refresh,
   }) {
     return search(text);
   }
@@ -185,9 +185,9 @@ class _$_Search implements _Search {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
   }) {
     return search?.call(text);
   }
@@ -196,9 +196,9 @@ class _$_Search implements _Search {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -211,9 +211,9 @@ class _$_Search implements _Search {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Search value) search,
-    required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
+    required TResult Function(_Refresh value) refresh,
   }) {
     return search(this);
   }
@@ -222,9 +222,9 @@ class _$_Search implements _Search {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
   }) {
     return search?.call(this);
   }
@@ -233,9 +233,9 @@ class _$_Search implements _Search {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -251,151 +251,6 @@ abstract class _Search implements SearchEvent {
   String? get text;
   @JsonKey(ignore: true)
   _$SearchCopyWith<_Search> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$ChangeTextCopyWith<$Res> {
-  factory _$ChangeTextCopyWith(
-          _ChangeText value, $Res Function(_ChangeText) then) =
-      __$ChangeTextCopyWithImpl<$Res>;
-  $Res call({String text});
-}
-
-/// @nodoc
-class __$ChangeTextCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
-    implements _$ChangeTextCopyWith<$Res> {
-  __$ChangeTextCopyWithImpl(
-      _ChangeText _value, $Res Function(_ChangeText) _then)
-      : super(_value, (v) => _then(v as _ChangeText));
-
-  @override
-  _ChangeText get _value => super._value as _ChangeText;
-
-  @override
-  $Res call({
-    Object? text = freezed,
-  }) {
-    return _then(_ChangeText(
-      text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ChangeText implements _ChangeText {
-  const _$_ChangeText(this.text);
-
-  @override
-  final String text;
-
-  @override
-  String toString() {
-    return 'SearchEvent.changeText(text: $text)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _ChangeText &&
-            const DeepCollectionEquality().equals(other.text, text));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
-
-  @JsonKey(ignore: true)
-  @override
-  _$ChangeTextCopyWith<_ChangeText> get copyWith =>
-      __$ChangeTextCopyWithImpl<_ChangeText>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? text) search,
-    required TResult Function(String text) changeText,
-    required TResult Function() fetchNext,
-    required TResult Function() clearText,
-  }) {
-    return changeText(text);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
-    TResult Function()? fetchNext,
-    TResult Function()? clearText,
-  }) {
-    return changeText?.call(text);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
-    TResult Function()? fetchNext,
-    TResult Function()? clearText,
-    required TResult orElse(),
-  }) {
-    if (changeText != null) {
-      return changeText(text);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Search value) search,
-    required TResult Function(_ChangeText value) changeText,
-    required TResult Function(_FetchNext value) fetchNext,
-    required TResult Function(_ClearText value) clearText,
-  }) {
-    return changeText(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
-    TResult Function(_FetchNext value)? fetchNext,
-    TResult Function(_ClearText value)? clearText,
-  }) {
-    return changeText?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
-    TResult Function(_FetchNext value)? fetchNext,
-    TResult Function(_ClearText value)? clearText,
-    required TResult orElse(),
-  }) {
-    if (changeText != null) {
-      return changeText(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ChangeText implements SearchEvent {
-  const factory _ChangeText(String text) = _$_ChangeText;
-
-  String get text;
-  @JsonKey(ignore: true)
-  _$ChangeTextCopyWith<_ChangeText> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -438,9 +293,9 @@ class _$_FetchNext implements _FetchNext {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? text) search,
-    required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
+    required TResult Function(String? text) refresh,
   }) {
     return fetchNext();
   }
@@ -449,9 +304,9 @@ class _$_FetchNext implements _FetchNext {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
   }) {
     return fetchNext?.call();
   }
@@ -460,9 +315,9 @@ class _$_FetchNext implements _FetchNext {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
     required TResult orElse(),
   }) {
     if (fetchNext != null) {
@@ -475,9 +330,9 @@ class _$_FetchNext implements _FetchNext {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Search value) search,
-    required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
+    required TResult Function(_Refresh value) refresh,
   }) {
     return fetchNext(this);
   }
@@ -486,9 +341,9 @@ class _$_FetchNext implements _FetchNext {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
   }) {
     return fetchNext?.call(this);
   }
@@ -497,9 +352,9 @@ class _$_FetchNext implements _FetchNext {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) {
     if (fetchNext != null) {
@@ -553,9 +408,9 @@ class _$_ClearText implements _ClearText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? text) search,
-    required TResult Function(String text) changeText,
     required TResult Function() fetchNext,
     required TResult Function() clearText,
+    required TResult Function(String? text) refresh,
   }) {
     return clearText();
   }
@@ -564,9 +419,9 @@ class _$_ClearText implements _ClearText {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
   }) {
     return clearText?.call();
   }
@@ -575,9 +430,9 @@ class _$_ClearText implements _ClearText {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? text)? search,
-    TResult Function(String text)? changeText,
     TResult Function()? fetchNext,
     TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
     required TResult orElse(),
   }) {
     if (clearText != null) {
@@ -590,9 +445,9 @@ class _$_ClearText implements _ClearText {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Search value) search,
-    required TResult Function(_ChangeText value) changeText,
     required TResult Function(_FetchNext value) fetchNext,
     required TResult Function(_ClearText value) clearText,
+    required TResult Function(_Refresh value) refresh,
   }) {
     return clearText(this);
   }
@@ -601,9 +456,9 @@ class _$_ClearText implements _ClearText {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
   }) {
     return clearText?.call(this);
   }
@@ -612,9 +467,9 @@ class _$_ClearText implements _ClearText {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Search value)? search,
-    TResult Function(_ChangeText value)? changeText,
     TResult Function(_FetchNext value)? fetchNext,
     TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
     required TResult orElse(),
   }) {
     if (clearText != null) {
@@ -626,4 +481,147 @@ class _$_ClearText implements _ClearText {
 
 abstract class _ClearText implements SearchEvent {
   const factory _ClearText() = _$_ClearText;
+}
+
+/// @nodoc
+abstract class _$RefreshCopyWith<$Res> {
+  factory _$RefreshCopyWith(_Refresh value, $Res Function(_Refresh) then) =
+      __$RefreshCopyWithImpl<$Res>;
+  $Res call({String? text});
+}
+
+/// @nodoc
+class __$RefreshCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
+    implements _$RefreshCopyWith<$Res> {
+  __$RefreshCopyWithImpl(_Refresh _value, $Res Function(_Refresh) _then)
+      : super(_value, (v) => _then(v as _Refresh));
+
+  @override
+  _Refresh get _value => super._value as _Refresh;
+
+  @override
+  $Res call({
+    Object? text = freezed,
+  }) {
+    return _then(_Refresh(
+      text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Refresh implements _Refresh {
+  const _$_Refresh(this.text);
+
+  @override
+  final String? text;
+
+  @override
+  String toString() {
+    return 'SearchEvent.refresh(text: $text)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Refresh &&
+            const DeepCollectionEquality().equals(other.text, text));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+
+  @JsonKey(ignore: true)
+  @override
+  _$RefreshCopyWith<_Refresh> get copyWith =>
+      __$RefreshCopyWithImpl<_Refresh>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? text) search,
+    required TResult Function() fetchNext,
+    required TResult Function() clearText,
+    required TResult Function(String? text) refresh,
+  }) {
+    return refresh(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? text)? search,
+    TResult Function()? fetchNext,
+    TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
+  }) {
+    return refresh?.call(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? text)? search,
+    TResult Function()? fetchNext,
+    TResult Function()? clearText,
+    TResult Function(String? text)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(text);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_FetchNext value) fetchNext,
+    required TResult Function(_ClearText value) clearText,
+    required TResult Function(_Refresh value) refresh,
+  }) {
+    return refresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_FetchNext value)? fetchNext,
+    TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
+  }) {
+    return refresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_FetchNext value)? fetchNext,
+    TResult Function(_ClearText value)? clearText,
+    TResult Function(_Refresh value)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Refresh implements SearchEvent {
+  const factory _Refresh(String? text) = _$_Refresh;
+
+  String? get text;
+  @JsonKey(ignore: true)
+  _$RefreshCopyWith<_Refresh> get copyWith =>
+      throw _privateConstructorUsedError;
 }

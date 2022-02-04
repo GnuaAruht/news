@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/presentation/widgets/loading_failed_widget.dart';
 
 import '../../core/constants/constants.dart';
 import '../../domain/entities/article.dart';
@@ -75,40 +76,30 @@ class _SearchPageState extends State<SearchPage> {
             switch (state.status) {
               case SearchStatus.initial:
                 return Center(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      CupertinoIcons.search,
-                      size: 80.0,
-                      color: Colors.black.withOpacity(0.4),
-                    ),
-                    Text(
-                      'Search News',
-                      style: TextStyle(
-                          fontSize: 18.0, color: Colors.black.withOpacity(0.5)),
-                    ),
-                  ],
-                ));
-              case SearchStatus.loading:
-                return const LoadingListWidget();
-              case SearchStatus.failed:
-                return Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
-                        Icons.error_outline_rounded,
-                        size: 80.0,
+                        CupertinoIcons.search,
+                        size: 60.0,
                         color: Colors.black.withOpacity(0.4),
                       ),
-                      Text('Search failed',
+                      Text('Search news',
                           style: TextStyle(
                               fontSize: 18.0,
                               color: Colors.black.withOpacity(0.5))),
                     ],
                   ),
                 );
+              case SearchStatus.loading:
+                return const LoadingListWidget();
+              case SearchStatus.failed:
+                return LoadingFailedWidget(
+                    icon: CupertinoIcons.search,
+                    errorMessage: 'Search failed',
+                    onRetry: () {
+                      _bloc.add(SearchEvent.refresh(_searchController.text));
+                    });
               case SearchStatus.success:
                 return Container();
             }
@@ -163,10 +154,15 @@ class _SearchWidget extends StatelessWidget {
       controller: searchController,
       textInputAction: TextInputAction.search,
       onSubmitted: onSearch,
-      decoration: const InputDecoration(
+      style: const TextStyle(fontSize: 18.0),
+      decoration: InputDecoration(
           hintText: 'Search News',
           border: InputBorder.none,
-          suffix: Icon(Icons.close)),
+          suffix: IconButton(
+              onPressed: () {
+                searchController.clear();
+              },
+              icon: const Icon(Icons.close))),
     );
   }
 }

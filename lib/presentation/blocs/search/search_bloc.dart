@@ -53,6 +53,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       }
     });
 
+    on<_Refresh>((event, emit) async {
+      page = DEFAULT_STARTPAGE;
+      emit(state.copyWith(
+          pStatus: SearchStatus.loading, pHasMaxReached: false, pArticles: []));
+      add(_Search(event.text));
+    });
+
     on<_ClearText>((event, emit) async {
       // set search status to initial and hasMaxReached false
       emit(
