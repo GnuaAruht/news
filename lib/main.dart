@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
+import 'core/config/db_config.dart';
 import 'core/config/theme.dart';
-import 'data/models/article_model.dart';
-import 'data/models/source_model.dart';
 import 'domain/entities/article.dart';
 import 'domain/entities/category.dart';
 import 'injector.dart';
@@ -20,9 +18,7 @@ import 'presentation/pages/search_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDepedencies();
-  await Hive.initFlutter();
-  Hive.registerAdapter(SourceModelAdapter());
-  Hive.registerAdapter(ArticleModelAdapter());
+  await initDbConfig();
   runApp(const NewsApp());
 }
 

@@ -6,17 +6,17 @@ import '../../../core/constants/constants.dart';
 import '../../../core/resources/data_state.dart';
 import '../../../domain/entities/article.dart';
 import '../../../domain/entities/category.dart';
-import '../../../domain/usecases/get_headline_articles_usecase.dart';
+import '../../../domain/usecases/get_categorized_articles_usecase.dart';
 
 part 'list_bloc.freezed.dart';
 part 'list_event.dart';
 part 'list_state.dart';
 
 class ListBloc extends Bloc<ListEvent, ListState> {
-  final GetTopHeadlineArticlesUsecase getTopHeadlineArticlesUsecase;
+  final GetCategorizedArticlesUsecase getCategorizedArticlesUsecase;
   int page = DEFAULT_STARTPAGE;
 
-  ListBloc(this.getTopHeadlineArticlesUsecase) : super(const ListState()) {
+  ListBloc(this.getCategorizedArticlesUsecase) : super(const ListState()) {
     on<_RefreshList>((event, emit) async {
       page = DEFAULT_STARTPAGE;
       emit(state.copyWith(
@@ -30,7 +30,7 @@ class ListBloc extends Bloc<ListEvent, ListState> {
       } else {
         emit(state.copyWith(pStatus: ListStatus.loading));
         final _dataResult =
-            await getTopHeadlineArticlesUsecase(page, event.category);
+            await getCategorizedArticlesUsecase(page, event.category);
         if (_dataResult is DataSuccess) {
           page++;
           final _articles = _dataResult.data ?? [];

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/presentation/pages/article_detail_page.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -208,74 +209,80 @@ class _TopArticleItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.all(8.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            FadeInImage.memoryNetwork(
-              imageErrorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: Colors.red.withOpacity(0.4),
-                  child: const Icon(Icons.error_outline_outlined),
-                );
-              },
-              placeholder: kTransparentImage,
-              image: article.urlToImage ?? '',
-              fit: BoxFit.cover,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                Colors.transparent,
-                Colors.black.withOpacity(0.5)
-              ], stops: const [
-                0.4,
-                0.88
-              ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    article.title,
-                    maxLines: 3,
-                    style: const TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w500,
-                        overflow: TextOverflow.ellipsis,
-                        color: Colors.white),
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        article.source.name,
-                        style: const TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 12.0,
-                      ),
-                      Text(
-                        article.formattedDate,
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  )
-                ],
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, ArticleDetailPage.routeName,
+            arguments: article);
+      },
+      child: Padding(
+        padding: const EdgeInsetsDirectional.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              FadeInImage.memoryNetwork(
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.red.withOpacity(0.4),
+                    child: const Icon(Icons.error_outline_outlined),
+                  );
+                },
+                placeholder: kTransparentImage,
+                image: article.urlToImage ?? '',
+                fit: BoxFit.cover,
               ),
-            )
-          ],
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Colors.transparent,
+                  Colors.black.withOpacity(0.8)
+                ], stops: const [
+                  0.4,
+                  0.9
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      article.title,
+                      maxLines: 3,
+                      style: const TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w500,
+                          overflow: TextOverflow.ellipsis,
+                          color: Colors.white),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          article.source.name,
+                          style: const TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 12.0,
+                        ),
+                        Text(
+                          article.formattedDate,
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
