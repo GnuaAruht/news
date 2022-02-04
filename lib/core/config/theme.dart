@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData buildlightTheme(BuildContext context) {
   final baseTheme = ThemeData.light();
   return baseTheme.copyWith(
-      textTheme: GoogleFonts.manropeTextTheme(
+      textTheme: GoogleFonts.latoTextTheme(
         Theme.of(context).textTheme,
       ),
       appBarTheme: const AppBarTheme(

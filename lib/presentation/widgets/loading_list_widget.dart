@@ -32,51 +32,55 @@ class _LoadingItemWidiget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      enabled: true,
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        height: DEFAULT_ITEM_HEIGHT,
-        child: Row(
-          children: [
-            const LoadingWidget(
-              width: 120.0,
-              height: 100,
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      height: DEFAULT_ITEM_HEIGHT,
+      child: Row(
+        children: [
+          const LoadingWidget(
+            width: 120.0,
+            height: 100,
+          ),
+          const SizedBox(
+            width: 8.0,
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                const LoadingWidget(
+                  height: 16.0,
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                const LoadingWidget(
+                  height: 16.0,
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                const LoadingWidget(
+                  height: 16.0,
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    LoadingWidget(
+                      width: 80,
+                    ),
+                    LoadingWidget(
+                      width: 80,
+                    )
+                  ],
+                )
+              ],
             ),
-            const SizedBox(
-              width: 8.0,
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  const LoadingWidget(
-                    height: 16.0,
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  const LoadingWidget(
-                    height: 16.0,
-                  ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      LoadingWidget(
-                        width: 80,
-                      ),
-                      LoadingWidget(
-                        width: 80,
-                      )
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

@@ -25,31 +25,31 @@ class NewsRepositoryImpl extends NewsRepository {
       required Category category,
       int pageSize = DEFAULT_PAGE_SIZE,
       String country = 'us'}) async {
-    // try {
-    //   final _response = await remoteDataSource.getTopHeadlineArticles(
-    //       page: page,
-    //       categoryValue: category.value,
-    //       pageSize: pageSize,
-    //       country: country);
-    //   if (_response.response.statusCode == HttpStatus.ok) {
-    //     final _models = _response.data.articles;
-    //     return DataSuccess(
-    //         data: _models.map((model) => model.toEntity()).toList());
-    //   } else {
-    //     return DataFailed(
-    //       error: DioError(
-    //         error: _response.response.statusMessage,
-    //         response: _response.response,
-    //         type: DioErrorType.response,
-    //         requestOptions: _response.response.requestOptions,
-    //       ),
-    //     );
-    //   }
-    // } on DioError catch (e) {
-    //   return DataFailed(error: e);
-    // }
-    await Future.delayed(const Duration(seconds: 3));
-    return DataSuccess(data: tempArticleList);
+    try {
+      final _response = await remoteDataSource.getTopHeadlineArticles(
+          page: page,
+          categoryValue: category.value,
+          pageSize: pageSize,
+          country: country);
+      if (_response.response.statusCode == HttpStatus.ok) {
+        final _models = _response.data.articles;
+        return DataSuccess(
+            data: _models.map((model) => model.toEntity()).toList());
+      } else {
+        return DataFailed(
+          error: DioError(
+            error: _response.response.statusMessage,
+            response: _response.response,
+            type: DioErrorType.response,
+            requestOptions: _response.response.requestOptions,
+          ),
+        );
+      }
+    } on DioError catch (e) {
+      return DataFailed(error: e);
+    }
+    // await Future.delayed(const Duration(seconds: 3));
+    // return DataSuccess(data: tempArticleList);
   }
 
   @override

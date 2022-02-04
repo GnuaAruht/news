@@ -33,7 +33,7 @@ class CategoryListPage extends StatelessWidget {
               ),
               const Text(
                 'Filter News Category',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
               ),
               const SizedBox(
                 height: DEFAULT_PADDING,

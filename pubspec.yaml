@@ -44,6 +44,10 @@ dependencies:
   webview_flutter: ^3.0.0
   transparent_image: ^2.0.0
   hive_flutter: ^1.1.0
+  data_connection_checker:
+    git:
+      url: https://github.com/chornthorn/data_connection_checker.git
+      ref: master
 
 dev_dependencies:
   build_runner: ^2.1.7

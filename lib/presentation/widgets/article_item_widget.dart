@@ -66,37 +66,39 @@ class _ArticleInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Text(
-            article.title.trim(),
-            maxLines: 2,
-            style: const TextStyle(overflow: TextOverflow.ellipsis),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              article.title.trim(),
+              maxLines: 3,
+              style: const TextStyle(
+                  fontSize: 18.0,
+                  overflow: TextOverflow.ellipsis,
+                  fontWeight: FontWeight.w400),
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-                padding: const EdgeInsets.all(4.0),
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(4.0)),
-                child: Text(
-                  article.source.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                )),
-            Text(
-              article.formattedDate,
-              style: const TextStyle(fontSize: 12.0),
-            )
-          ],
-        )
-      ],
+          const SizedBox(
+            height: 4.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                article.source.name,
+                style: const TextStyle(fontSize: 16.0, color: Colors.blue),
+              ),
+              Text(
+                article.formattedDate,
+                style: const TextStyle(fontSize: 12.0),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

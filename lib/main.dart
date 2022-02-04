@@ -39,7 +39,7 @@ class NewsApp extends StatelessWidget {
         if (settings.name == CategoryListPage.routeName) {
           return MaterialPageRoute(builder: (_) => const CategoryListPage());
         } else if (settings.name == ArticleListPage.routeName) {
-          final _category = settings.arguments as Category;
+          final _category = settings.arguments as Category? ?? Category.GENERAL;
           return MaterialPageRoute(builder: (_) {
             return BlocProvider(
               create: (context) =>

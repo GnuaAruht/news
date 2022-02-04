@@ -31,7 +31,9 @@ class MainPage extends StatelessWidget {
           builder: (context, state) {
             return state.when(
                 loading: () => const _MainLoadingListWidget(),
-                fetched: (articles) => _MainView(articles: articles),
+                fetched: (articles) => articles.isNotEmpty
+                    ? _MainView(articles: articles)
+                    : SizedBox.fromSize(),
                 error: (_) => LoadingFailedWidget(
                       onRetry: () {
                         context
@@ -148,7 +150,7 @@ class _TopArticleListWidgetState extends State<_TopArticleListWidget> {
               const Text(
                 'Top News',
                 style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 20.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w500),
               ),
@@ -176,7 +178,7 @@ class _TopArticleListWidgetState extends State<_TopArticleListWidget> {
           CarouselSlider(
             carouselController: _controller,
             options: CarouselOptions(
-                aspectRatio: 1.6,
+                aspectRatio: 1.4,
                 initialPage: 0,
                 autoPlay: true,
                 viewportFraction: 1,
@@ -214,13 +216,9 @@ class _TopArticleItemWidget extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             FadeInImage.memoryNetwork(
-              width: 120.0,
-              height: 100,
               imageErrorBuilder: (context, error, stackTrace) {
                 return Container(
-                  width: 120.0,
-                  height: 100.0,
-                  color: Colors.red.withOpacity(0.6),
+                  color: Colors.red.withOpacity(0.4),
                   child: const Icon(Icons.error_outline_outlined),
                 );
               },
@@ -239,16 +237,16 @@ class _TopArticleItemWidget extends StatelessWidget {
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     article.title,
-                    maxLines: 2,
+                    maxLines: 3,
                     style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
                         overflow: TextOverflow.ellipsis,
                         color: Colors.white),
                   ),
@@ -257,22 +255,20 @@ class _TopArticleItemWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(4.0),
-                        decoration: BoxDecoration(
+                      Text(
+                        article.source.name,
+                        style: const TextStyle(
+                            fontSize: 18.0,
                             color: Colors.blue,
-                            borderRadius: BorderRadius.circular(4.0)),
-                        child: Text(
-                          article.source.name,
-                          style: const TextStyle(color: Colors.white),
-                        ),
+                            fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
                         width: 12.0,
                       ),
                       Text(
                         article.formattedDate,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
                       )
                     ],
                   )
@@ -303,15 +299,17 @@ class _RecentArticleListWidget extends StatelessWidget {
               const Text(
                 'Recent News',
                 style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 20.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w500),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, ArticleListPage.routeName);
+                },
                 child: const Text(
                   'View all',
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Colors.blue, fontSize: 16.0),
                 ),
               )
             ],
@@ -320,7 +318,21 @@ class _RecentArticleListWidget extends StatelessWidget {
             height: 8.0,
           ),
           _ArticleListWidget(articles: articles),
-          ElevatedButton(onPressed: () {}, child: const Text('View all'))
+          const SizedBox(
+            height: 8.0,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, ArticleListPage.routeName);
+            },
+            child: const Text(
+              'View all',
+              style: TextStyle(color: Colors.blue, fontSize: 16.0),
+            ),
+          ),
+          const SizedBox(
+            height: 8.0,
+          ),
         ],
       ),
     );
@@ -340,7 +352,7 @@ class _ArticleListWidget extends StatelessWidget {
         itemCount: articles.length,
         separatorBuilder: (context, index) {
           return const SizedBox(
-            height: DEFAULT_PADDING,
+            height: 4.0,
           );
         },
         itemBuilder: (context, index) {
@@ -385,7 +397,7 @@ class _MainLoadingListWidget extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child:
-                        AspectRatio(aspectRatio: 1.6, child: LoadingWidget()),
+                        AspectRatio(aspectRatio: 1.4, child: LoadingWidget()),
                   )
                 ],
               ),
@@ -417,26 +429,6 @@ class _MainLoadingListWidget extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _MainLoadingFailedWidget extends StatelessWidget {
-  const _MainLoadingFailedWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.error_outline_rounded,
-            size: 50.0,
-          ),
-          Text('Loading failed')
-        ],
       ),
     );
   }

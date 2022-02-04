@@ -6,7 +6,7 @@ class LoadingFailedWidget extends StatelessWidget {
   final VoidCallback onRetry;
   const LoadingFailedWidget(
       {Key? key,
-      this.errorMessage = "Loading failed",
+      this.errorMessage = "Loading Failed",
       this.icon = Icons.error_outline_rounded,
       required this.onRetry})
       : super(key: key);
@@ -25,11 +25,14 @@ class LoadingFailedWidget extends StatelessWidget {
           Text(errorMessage,
               style: TextStyle(
                   fontSize: 18.0, color: Colors.black.withOpacity(0.5))),
+          const SizedBox(
+            height: 8.0,
+          ),
           TextButton(
               onPressed: onRetry,
               child: const Text(
                 'Retry',
-                style: TextStyle(fontSize: 18.0),
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal),
               ))
         ],
       ),

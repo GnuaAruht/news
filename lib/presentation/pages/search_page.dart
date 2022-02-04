@@ -64,47 +64,37 @@ class _SearchPageState extends State<SearchPage> {
           onClearSearch: () {
             _searchController.clear();
           }),
-      body: BlocBuilder<SearchBloc, SearchState>(
-        builder: (context, state) {
-          if (state.articles.isNotEmpty) {
-            return _ArticleListWidget(
-              scrollController: _scrollController,
-              articles: state.articles,
-              hasMaxReached: state.hasMaxReached,
-            );
-          } else {
-            switch (state.status) {
-              case SearchStatus.initial:
-                return Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        CupertinoIcons.search,
-                        size: 60.0,
-                        color: Colors.black.withOpacity(0.4),
-                      ),
-                      Text('Search news',
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              color: Colors.black.withOpacity(0.5))),
-                    ],
-                  ),
-                );
-              case SearchStatus.loading:
-                return const LoadingListWidget();
-              case SearchStatus.failed:
-                return LoadingFailedWidget(
-                    icon: CupertinoIcons.search,
-                    errorMessage: 'Search failed',
-                    onRetry: () {
-                      _bloc.add(SearchEvent.refresh(_searchController.text));
-                    });
-              case SearchStatus.success:
-                return Container();
-            }
-          }
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _bloc.add(SearchEvent.refresh(_searchController.text));
         },
+        child: BlocBuilder<SearchBloc, SearchState>(
+          builder: (context, state) {
+            if (state.articles.isNotEmpty) {
+              return _ArticleListWidget(
+                scrollController: _scrollController,
+                articles: state.articles,
+                hasMaxReached: state.hasMaxReached,
+              );
+            } else {
+              switch (state.status) {
+                case SearchStatus.initial:
+                  return const _SearchInitWidget();
+                case SearchStatus.loading:
+                  return const LoadingListWidget();
+                case SearchStatus.failed:
+                  return LoadingFailedWidget(
+                      icon: CupertinoIcons.search,
+                      errorMessage: 'Search Failed',
+                      onRetry: () {
+                        _bloc.add(SearchEvent.refresh(_searchController.text));
+                      });
+                case SearchStatus.success:
+                  return Container();
+              }
+            }
+          },
+        ),
       ),
     );
   }
@@ -189,6 +179,29 @@ class _ArticleListWidget extends StatelessWidget {
               ? ArticleItemWidget(article: articles[index])
               : const _LoadingItemWidget();
         });
+  }
+}
+
+class _SearchInitWidget extends StatelessWidget {
+  const _SearchInitWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            CupertinoIcons.search,
+            size: 60.0,
+            color: Colors.black.withOpacity(0.4),
+          ),
+          Text('Search News',
+              style: TextStyle(
+                  fontSize: 18.0, color: Colors.black.withOpacity(0.5))),
+        ],
+      ),
+    );
   }
 }
 

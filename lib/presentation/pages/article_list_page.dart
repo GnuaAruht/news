@@ -183,9 +183,11 @@ class _LoadingItemWidget extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: CircularProgressIndicator(),
+                  height: 35,
+                  width: 35,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 1.8,
+                  ),
                 ),
               ),
             );
