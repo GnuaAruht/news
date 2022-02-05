@@ -1,16 +1,20 @@
 # news
 
-A new Flutter project.
+A Flutter News App in Clean Architecture.
 
 ## Getting Started
+1. Clone this repository 
+2. Replace api_key in api_key_sample.dart with your api key from https://newsapi.org/
 
-This project is a starting point for a Flutter application.
+## Architecture pattern
 
-A few resources to get you started if this is your first Flutter project:
+<img src="./screenshots/architecture_img.png" >
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Credit to https://resocoder.com
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+## Screenshots
+<img src="./screenshots/img1.png" width="320" height="640">
+<img src="./screenshots/img2.png" width="320" height="640">
+<img src="./screenshots/img3.png" width="330" height="640">
